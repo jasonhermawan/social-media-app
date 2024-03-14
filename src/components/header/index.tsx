@@ -6,7 +6,7 @@ import { IconSearch } from '@tabler/icons-react';
 
 const Header = () => {
   return (
-    <Box bg='white' style={{ borderBottom: 'solid 1px rgba(0, 0, 0, 0.15)' }}>
+    <Box bg='white' style={{ borderBottom: 'solid 1px rgba(0, 0, 0, 0.1)' }}>
       <Flex align='center' py='15px' className='layout'>
         <Box w='30%'>
           <Text>Logo</Text>

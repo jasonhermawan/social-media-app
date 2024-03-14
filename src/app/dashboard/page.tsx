@@ -1,9 +1,8 @@
-import React from 'react'
+import Feed from '@/features/feed';
+import React from 'react';
 
-const Feed = () => {
-  return (
-    <div>Feed</div>
-  )
-}
+const FeedPage = () => {
+  return <Feed />;
+};
 
-export default Feed
+export default FeedPage;

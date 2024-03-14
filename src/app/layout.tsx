@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 import '@mantine/core/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { ReactQueryProvider } from '@/providers/ReactQueryProvider';
-import './globals.css'
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,9 +24,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ReactQueryProvider>
-          <MantineProvider>
-            {children}
-          </MantineProvider>
+          <MantineProvider>{children}</MantineProvider>
         </ReactQueryProvider>
       </body>
     </html>
