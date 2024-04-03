@@ -1,3 +1,4 @@
+import { useStore } from '@/stores';
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
@@ -11,6 +12,7 @@ interface ILoginArgs {
 export const useLoginMutation = (
   options?: UseMutationOptions<any, AxiosError, ILoginArgs>,
 ) => {
+  const { onAuthSuccess } = useStore();
   const router = useRouter();
   return useMutation({
     mutationFn: async ({ email, password }: ILoginArgs): Promise<any> => {
@@ -25,7 +27,9 @@ export const useLoginMutation = (
     ...options,
     onSuccess(data) {
       const { user } = data.data;
-      localStorage.setItem('token', user.token);
+      onAuthSuccess({
+        accessToken: user.token,
+      });
       router.push('/dashboard');
     },
     onError() {

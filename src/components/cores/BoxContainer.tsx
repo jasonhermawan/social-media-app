@@ -6,7 +6,7 @@ const BoxContainer: React.FC<PropsWithChildren> = ({ children }) => {
     <Box
       bg='white'
       p='20px'
-      style={{ borderRadius: '10px', border: 'solid 1px rgba(0, 0, 0, 0.1)' }}
+      style={{ borderRadius: '10px', boxShadow: '0 0 5px rgb(238, 238, 238)'}}
     >
       {children}
     </Box>

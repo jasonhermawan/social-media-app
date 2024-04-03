@@ -5,6 +5,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { ReactQueryProvider } from '@/providers/ReactQueryProvider';
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,7 +26,10 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ReactQueryProvider>
-          <MantineProvider>{children}</MantineProvider>
+          <MantineProvider>
+            {children}
+            <ToastContainer />
+          </MantineProvider>
         </ReactQueryProvider>
       </body>
     </html>
