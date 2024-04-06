@@ -1,30 +1,26 @@
 'use client';
 import { Avatar, Button, Divider, Flex, Stack, Text } from '@mantine/core';
 import React from 'react';
-import PostCard from './components/PostCard';
 import { useGetPostsQuery } from './api/useGetPostsQuery';
 import BoxContainer from '@/components/cores/BoxContainer';
 import { Formik } from 'formik';
 import PostForm from './components/PostForm';
 import { useCreatePostMutation } from './api/useCreatePostMutation';
+import PostCardWrapper from './components/PostCardWrapper';
+import { useGetCurrentAccountData } from '@/hooks/useGetCurrentAccountData';
 
 const Feed = () => {
-  const { mutate: mutateCreatePost } = useCreatePostMutation();
+  const user = useGetCurrentAccountData();
+  const { mutate: createPost } = useCreatePostMutation();
   const initialValues = {
     caption: '',
     file: undefined,
   };
   const { data: posts, refetch: refetchPost } = useGetPostsQuery();
+
   const printPostCards = () => {
     return posts.map((val: any, idx: number) => {
-      return (
-        <PostCard
-          key={idx}
-          caption={val.caption}
-          picture={val.picture}
-          image={`${process.env.NEXT_PUBLIC_BASE_API_URL}post-images/${val.picture}`}
-        />
-      );
+      return <PostCardWrapper key={idx} postId={val.id} />;
     });
   };
 
@@ -35,11 +31,14 @@ const Feed = () => {
           What is happening?
         </Text>
         <Flex gap='10px' w='100%'>
-          <Avatar size='md' />
+          <Avatar
+            size='md'
+            src={`${process.env.NEXT_PUBLIC_BASE_API_URL}user-profile-images/${user.picture}`}
+          />
           <Formik
             initialValues={initialValues}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              mutateCreatePost({
+              createPost({
                 ...values,
               });
               resetForm();

@@ -6,6 +6,7 @@ import { ReactQueryProvider } from '@/providers/ReactQueryProvider';
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import AuthProvider from '@/providers/AuthProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,7 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ReactQueryProvider>
           <MantineProvider>
-            {children}
+            <AuthProvider>{children}</AuthProvider>
             <ToastContainer />
           </MantineProvider>
         </ReactQueryProvider>

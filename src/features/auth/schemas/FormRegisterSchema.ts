@@ -4,6 +4,7 @@ export const FormRegisterSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalidg email format')
     .required('Email is required'),
+  name: Yup.string().required('Name is required'),
   username: Yup.string().required('Username is required'),
   password: Yup.string().required('Password is required'),
 });

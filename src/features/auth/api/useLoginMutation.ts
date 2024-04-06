@@ -29,8 +29,11 @@ export const useLoginMutation = (
       const { user } = data.data;
       onAuthSuccess({
         accessToken: user.token,
+        email: user.email,
+        name: user.name,
+        username: user.username,
       });
-      router.push('/dashboard');
+      router.push('/home');
     },
     onError() {
       toast.error('Login failed');

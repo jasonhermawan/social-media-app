@@ -9,7 +9,12 @@ export type GlobalStore = AuthSlice;
 
 export const useStore = create<
   GlobalStore,
-  [['zustand/persist', Pick<GlobalStore, 'accessToken'>]]
+  [
+    [
+      'zustand/persist',
+      Pick<GlobalStore, 'accessToken' | 'email' | 'name' | 'username'>,
+    ],
+  ]
 >(
   persist(
     (...a) => ({
@@ -20,6 +25,9 @@ export const useStore = create<
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         accessToken: state.accessToken,
+        email: state.email,
+        name: state.name,
+        username: state.username,
       }),
     },
   ),

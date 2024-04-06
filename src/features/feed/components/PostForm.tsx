@@ -1,14 +1,7 @@
 'use client';
 import { PreviewImages } from '@/components/cores/PreviewImage';
 import FormTextbox from '@/components/forms/FormTextbox';
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Input,
-  Text,
-} from '@mantine/core';
+import { Box, Button, Divider, Flex, Input, Text } from '@mantine/core';
 import { IconPhoto } from '@tabler/icons-react';
 import { Form, useFormikContext } from 'formik';
 import React from 'react';
@@ -28,7 +21,7 @@ const PostForm = () => {
           value={values.caption}
         />
         {values.file ? (
-          <Box my='20px' w={{base: '100%', lg: '50%'}}>
+          <Box my='20px' w={{ base: '100%', lg: '50%' }}>
             <PreviewImages
               fileImage={values.file}
               onRemoveImage={() => setFieldValue('file', undefined)}
@@ -50,9 +43,9 @@ const PostForm = () => {
               <></>
             ) : (
               <label htmlFor='file'>
-                <Flex align='center' gap='5px'>
-                  <IconPhoto />
-                  <Text size='14px' fw='500'>
+                <Flex align='center' gap='5px' style={{ cursor: 'pointer' }}>
+                  <IconPhoto color='gray' />
+                  <Text size='14px' fw='500' color='gray'>
                     Add media
                   </Text>
                 </Flex>
@@ -60,7 +53,12 @@ const PostForm = () => {
             )}
           </Box>
 
-          <Button type='submit'>Post</Button>
+          <Button
+            type='submit'
+            disabled={values.caption || values.file ? false : true}
+          >
+            Post
+          </Button>
         </Flex>
       </Form>
     </Box>

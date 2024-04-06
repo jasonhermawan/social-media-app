@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 interface IRegisterArgs {
   email: string;
+  name: string;
   username: string;
   password: string;
 }
@@ -14,11 +15,12 @@ export const useRegisterMutation = (
 ) => {
   const router = useRouter();
   return useMutation({
-    mutationFn: async ({ email, username, password }: IRegisterArgs) => {
+    mutationFn: async ({ email, name, username, password }: IRegisterArgs) => {
       return await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_API_URL}auth/register`,
         {
           email,
+          name,
           username,
           password,
         },

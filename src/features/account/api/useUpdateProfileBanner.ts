@@ -2,25 +2,21 @@ import { useStore } from '@/stores';
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 
-interface ICreatePostArgs {
-  caption: string;
-  file: any;
+interface IUpdateProfileBannerArgs {
+  banner: any;
 }
 
-export const useCreatePostMutation = (
-  options?: UseMutationOptions<any, AxiosError, ICreatePostArgs>,
+export const useUpdateProfileBannerMutation = (
+  options?: UseMutationOptions<any, AxiosError, IUpdateProfileBannerArgs>,
 ) => {
   const { accessToken } = useStore();
   return useMutation({
-    mutationFn: async (payload: ICreatePostArgs) => {
+    mutationFn: async (payload: IUpdateProfileBannerArgs) => {
       const formData = new FormData();
-      if (payload.file) {
-        formData.append('file', payload.file[0]);
-      }
-      formData.append('caption', payload.caption);
+      formData.append('file', payload.banner[0]);
 
-      return await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}post`,
+      return await axios.patch(
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}user/banner-picture`,
         formData,
         {
           headers: {

@@ -4,6 +4,7 @@ import { ActionIcon, Button, Stack, Text } from '@mantine/core';
 import { Form, useFormikContext } from 'formik';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { BiAt } from 'react-icons/bi';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const RegisterForm = () => {
@@ -19,7 +20,13 @@ const RegisterForm = () => {
     >
       <Stack>
         <FormInput name='email' placeholder='john-doe@mail.com' label='Email' />
-        <FormInput name='username' placeholder='johndoe' label='Username' />
+        <FormInput name='name' placeholder='John Doe' label='Name' />
+        <FormInput
+          leftSection={<BiAt />}
+          name='username'
+          placeholder='johndoe'
+          label='Username'
+        />
         <FormInput
           name='password'
           label='Password'
@@ -44,7 +51,7 @@ const RegisterForm = () => {
         }}
         onClick={() => router.push('/login')}
       >
-        ALready have an account? Login
+        Already have an account? Login
       </Text>
     </Form>
   );

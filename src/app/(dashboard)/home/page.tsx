@@ -1,8 +1,8 @@
 import Feed from '@/features/feed';
 import React from 'react';
 
-const FeedPage = () => {
+const HomePage = () => {
   return <Feed />;
 };
 
-export default FeedPage;
+export default HomePage;
