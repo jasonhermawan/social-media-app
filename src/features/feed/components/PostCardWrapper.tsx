@@ -20,10 +20,18 @@ const PostCardWrapper = ({ postId }: { postId: string }) => {
 
   const userId = post[0]?.userId;
 
-  return <UserDetails userId={userId} post={post[0]} />;
+  return <UserDetails postId={postId} userId={userId} post={post[0]} />;
 };
 
-const UserDetails = ({ userId, post }: { userId: string; post: any }) => {
+const UserDetails = ({
+  postId,
+  userId,
+  post,
+}: {
+  postId: string;
+  userId: string;
+  post: any;
+}) => {
   const { data: users, isLoading: isLoadingUser } = useGetUsersQuery({
     id: userId,
   });
@@ -38,6 +46,7 @@ const UserDetails = ({ userId, post }: { userId: string; post: any }) => {
 
   return (
     <PostCard
+      postId={postId}
       name={users.name}
       username={users.username}
       avatar={`${process.env.NEXT_PUBLIC_BASE_API_URL}user-profile-images/${users.picture}`}
