@@ -18,11 +18,12 @@ interface IAccountPageProps {
 }
 
 const Account: React.FC<IAccountPageProps> = ({ username }) => {
-  const { data: posts } = useGetPostsQuery({
-    username,
-  });
   const { data: user } = useGetUsersQuery({
     username,
+  });
+
+  const { data: posts } = useGetPostsQuery({
+    userid: user.id,
   });
 
   const { mutate: updateProfilePicture } = useUpdateProfilePictureMutation();

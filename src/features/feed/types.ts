@@ -6,5 +6,4 @@ interface IPostForm {
 interface IGetPostQuery {
   id?: string;
   userid?: string;
-  username?: string;
 }
